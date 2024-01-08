@@ -16,7 +16,7 @@ function build_and_install_demos {
     local app_name=$1
     local cpp_src_sir=$2
 
-    echo "make"
+    make
     cd "../" || exit
 
     mkdir -p "${model_zoo_path}/${app_name}"
@@ -29,7 +29,7 @@ function build_and_install_demos {
 function age_gender_detection {
     (
         echo "Integrating Age and Gender Detection..."
-        app_name="age_gender_detection"
+        local app_name="age_gender_detection"
 
         cd "./${app_name}/app" || exit
 
@@ -40,17 +40,26 @@ function age_gender_detection {
 function animal_detection {
     (
         echo "Integrating Animal Detection..."
-        app_name="animal_detection"
+        local app_name="animal_detection"
 
         cd "./${app_name}/usbcam_app" || exit
         build_and_install_demos "${app_name}" "usbcam_app"
+
+        local weights_url="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/releases/download/v1.2.3/animal_yolov3_weight.dat"
+        local weights_destination="${model_zoo_path}/${app_name}/exe/animal_yolov3/"
+        echo "Attemping to pull weights from ${weights_url}"
+        if [ ! -d "${weights_destination}" ]; then
+            echo "Directory ${weights_destination} should exist from build_and_install_demos"
+            exit 1
+        fi
+        wget "${weights_url}" -P "${weights_destination}"
     )
 }
 
 function driver_monitoring_system {
     (
         echo "Integrating Driver Monitoring System..."
-        app_name="driver_monitoring_system"
+        local app_name="driver_monitoring_system"
 
         cd "./${app_name}/app" || exit
         build_and_install_demos "${app_name}" "app"
@@ -60,7 +69,7 @@ function driver_monitoring_system {
 function elderly_fall_detection {
     (
         echo "Integrating Elderly Fall Detection..."
-        app_name="elderly_fall_detection"
+        local app_name="elderly_fall_detection"
 
         cd "./${app_name}/app" || exit
         build_and_install_demos "${app_name}" "app"
@@ -70,7 +79,7 @@ function elderly_fall_detection {
 function hand_gesture_recognition {
     (
         echo "Integrating Hand Gesture Recognition..."
-        app_name="hand_gesture_recognition"
+        local app_name="hand_gesture_recognition"
 
         cd "./hand_gesture_recognition/app" || exit
         build_and_install_demos "${app_name}" "app"
@@ -84,13 +93,22 @@ function head_counting {
 
         cd "./${app_name}/app" || exit
         build_and_install_demos "${app_name}" "app"
+
+        local weights_url="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/releases/download/v1.2.2/yolov3_Head_counting_weights.dat"
+        local weights_destination="${model_zoo_path}/${app_name}/exe/yolov3_cam/"
+        echo "Attemping to pull weights from ${weights_url}"
+        if [ ! -d "${weights_destination}" ]; then
+            echo "Directory ${weights_destination} should exist from build_and_install_demos"
+            exit 1
+        fi
+        wget "${weights_url}" -P "${weights_destination}"
     )
 }
 
 function human_gaze_detection {
     (
         echo "Integrating Human Gaze Detection..."
-        app_name="human_gaze_detection"
+        local app_name="human_gaze_detection"
 
         cd "./${app_name}/app" || exit
         build_and_install_demos "${app_name}" "app"
@@ -100,10 +118,19 @@ function human_gaze_detection {
 function safety_helmet_vest_detection {
     (
         echo "Integrating Safety Helmet and Vest Detection..."
-        app_name="safety_helmet_vest_detection"
+        local app_name="safety_helmet_vest_detection"
 
         cd "./${app_name}/app" || exit
         build_and_install_demos "${app_name}" "app"
+
+        local weights_url="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/releases/download/v1.2.2/yolov3_Helmet_vest_detection_weight.dat"
+        local weights_destination="${model_zoo_path}/${app_name}/exe/yolov3_Helmet_vest_detection"
+        echo "Attemping to pull weights from ${weights_url}"
+        if [ ! -d "${weights_destination}" ]; then
+            echo "Directory ${weights_destination} should exist from build_and_install_demos"
+            exit 1
+        fi
+        wget "${weights_url}" -P "${weights_destination}"
     )
 }
 
