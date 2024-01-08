@@ -1,0 +1,28 @@
+/* style.css */
+body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.logo {
+    width: 200px;
+    margin-top: 12px;
+}
+
+#title {
+    color: black;
+    margin: 20px 0;
+}
+
+.demo-image {
+    width: 80%;
+    margin-top: 12px;
+}
