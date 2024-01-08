@@ -4,13 +4,49 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Headcounting</title>
+    <style>
+        body {
+            text-align: center;
+            /* Center the content */
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            /* Light background for better visibility of the Avnet logo */
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .logo {
+            width: 200px;
+            /* Adjust logo size */
+            margin-top: 12px;
+            /* background-color: #333; */
+        }
+
+        #title {
+            color: black;
+            /* Title color */
+            margin: 20px 0;
+        }
+
+        .demo-image {
+            width: 80%;
+            min-width: 600px;
+            /* Adjust demo image size */
+            margin-top: 12px;
+        }
+    </style>
 </head>
 
 <body>
-    <div>
-        <img src="./images/Avnet_logo_no-tagline_rgb_rev1.png" style="margin-left:20px; margin-top:12px;"
-            class="img-fluid" alt="Avnet">
+    <div class="container">
+        <img src="./images/Avnet_logo_no-tagline_rgb.svg" class="logo" alt="Avnet">
         <h1 id="title">RZBoard V2L: Headcounting Demo</h1>
+        <img src="./images/sample_hw_setup.png" class="demo-image" alt="Demo hardware setup">
     </div>
 </body>
 
