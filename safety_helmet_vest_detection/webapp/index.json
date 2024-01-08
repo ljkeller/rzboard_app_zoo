@@ -1,0 +1,27 @@
+{
+    "name": "Safety Helmet Vest Detection, USB",
+    "description": "Detect safety helmets and vests in a USB camera feed, requires HDMI or MIPI display output",
+    "process": {
+        "command": "./safety_helmet_vest_usbcam_app",
+        "cwd": "/home/root/model_zoo/safety_helmet_vest_detection/exe",
+        "args": [],
+        "environment": [
+            {
+                "name": "XDG_SESSION_TYPE",
+                "value": "tty"
+            },
+            {
+                "name": "XDG_SESSION_CLASS",
+                "value": "user"
+            },
+            {
+                "name": "XDG_SESSION_ID",
+                "value": "c2"
+            },
+            {
+                "name": "XDG_RUNTIME_DIR",
+                "value": "/run/user/0"
+            }
+        ]
+    }
+}

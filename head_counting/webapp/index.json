@@ -1,0 +1,27 @@
+{
+    "name": "Headcounting, USB",
+    "description": "Count heads with a USB camera, requires HDMI or MIPI display output",
+    "process": {
+        "command": "./head_count_usbcam_app",
+        "cwd": "/home/root/model_zoo/head_counting/exe",
+        "args": [],
+        "environment": [
+            {
+                "name": "XDG_SESSION_TYPE",
+                "value": "tty"
+            },
+            {
+                "name": "XDG_SESSION_CLASS",
+                "value": "user"
+            },
+            {
+                "name": "XDG_SESSION_ID",
+                "value": "c2"
+            },
+            {
+                "name": "XDG_RUNTIME_DIR",
+                "value": "/run/user/0"
+            }
+        ]
+    }
+}
