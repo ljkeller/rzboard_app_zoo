@@ -2,127 +2,108 @@
 
 echo "Usage (inside rzboard_app_zoo dir): ./integrate.sh"
 
-MODEL_ZOO_PATH="/home/root/model_zoo"
-HTTP_DEMO_PATH="/home/root/demos"
-BASE_DIR=$(pwd)
+model_zoo_path="/home/root/model_zoo"
+http_demo_path="/home/root/demos"
 
-# function visit_and_build {
-#     if [ "$#" -ne 1 ]; then
-#         echo "Usage: visit_and_build <app_dir>"
-#         exit
-#     fi
+# Assumes that the passed directory is the c++ app directory, and you can
+# simply step pack one directory to see the c++ app and webapp directories
+function build_and_install_demos {
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: make_and_install <app_name> <cpp_src_sir>"
+        exit
+    fi
 
-#     if [ ! -d "$1" ]; then
-#         echo "Directory $1 does not exist."
-#         exit
-#     fi
+    local app_name=$1
+    local cpp_src_sir=$2
 
-#     cd "$1" || exit
-#     echo "make"
-#     cd "$1/../" || exit
-# }
+    echo "make"
+    cd "../" || exit
+
+    mkdir -p "${model_zoo_path}/${app_name}"
+    cp -R "./${cpp_src_sir}/." "${model_zoo_path}/${app_name}"
+
+    mkdir -p "$http_demo_path/${app_name}"
+    cp -R "./webapp/." "$http_demo_path/${app_name}"
+}
 
 function age_gender_detection {
     (
         echo "Integrating Age and Gender Detection..."
+        app_name="age_gender_detection"
 
-        cd "./age_gender_detection/app" || exit
-        echo "make"
-        cd "../" || exit
+        cd "./${app_name}/app" || exit
 
-        mkdir -p "$MODEL_ZOO_PATH/age_gender_detection"
-        cp -R "./app/." "$MODEL_ZOO_PATH/age_gender_detection"
+        build_and_install_demos "${app_name}" "app"
     )
 }
 
 function animal_detection {
     (
         echo "Integrating Animal Detection..."
+        app_name="animal_detection"
 
-        cd "./animal_detection/usbcam_app" || exit
-        echo "make"
-        cd "../" || exit
-
-        mkdir -p "$MODEL_ZOO_PATH/animal_detection"
-        cp -R "./usbcam_app/." "$MODEL_ZOO_PATH/animal_detection"
+        cd "./${app_name}/usbcam_app" || exit
+        build_and_install_demos "${app_name}" "usbcam_app"
     )
 }
 
 function driver_monitoring_system {
     (
         echo "Integrating Driver Monitoring System..."
+        app_name="driver_monitoring_system"
 
-        cd "./driver_monitoring_system/app" || exit
-        echo "make"
-        cd "../" || exit
-
-        mkdir -p "$MODEL_ZOO_PATH/driver_monitoring_system"
-        cp -R "./app/." "$MODEL_ZOO_PATH/driver_monitoring_system"
+        cd "./${app_name}/app" || exit
+        build_and_install_demos "${app_name}" "app"
     )
 }
 
 function elderly_fall_detection {
     (
         echo "Integrating Elderly Fall Detection..."
+        app_name="elderly_fall_detection"
 
-        cd "./elderly_fall_detection/app" || exit
-        echo "make"
-        cd "../" || exit
-
-        mkdir -p "$MODEL_ZOO_PATH/elderly_fall_detection"
-        cp -R "./app/." "$MODEL_ZOO_PATH/elderly_fall_detection"
+        cd "./${app_name}/app" || exit
+        build_and_install_demos "${app_name}" "app"
     )
 }
 
 function hand_gesture_recognition {
     (
         echo "Integrating Hand Gesture Recognition..."
+        app_name="hand_gesture_recognition"
 
         cd "./hand_gesture_recognition/app" || exit
-        echo "make"
-        cd "../" || exit
-
-        mkdir -p "$MODEL_ZOO_PATH/hand_gesture_recognition"
-        cp -R "./app/." "$MODEL_ZOO_PATH/hand_gesture_recognition"
+        build_and_install_demos "${app_name}" "app"
     )
 }
 
 function head_counting {
     (
         echo "Integrating Head Counting..."
+        app_name="head_counting"
 
-        cd "./head_counting/app" || exit
-        echo "make"
-        cd "../" || exit
-
-        mkdir -p "$MODEL_ZOO_PATH/head_counting"
-        cp -R "./app/." "$MODEL_ZOO_PATH/head_counting"
+        cd "./${app_name}/app" || exit
+        build_and_install_demos "${app_name}" "app"
     )
 }
 
 function human_gaze_detection {
     (
         echo "Integrating Human Gaze Detection..."
+        app_name="human_gaze_detection"
 
-        cd "./human_gaze_detection/app" || exit
-        echo "make"
-        cd "../" || exit
-
-        mkdir -p "$MODEL_ZOO_PATH/human_gaze_detection"
-        cp -R "./app/." "$MODEL_ZOO_PATH/human_gaze_detection"
+        cd "./${app_name}/app" || exit
+        build_and_install_demos "${app_name}" "app"
     )
 }
 
 function safety_helmet_vest_detection {
     (
         echo "Integrating Safety Helmet and Vest Detection..."
+        app_name="safety_helmet_vest_detection"
 
-        cd "./safety_helmet_vest_detection/app" || exit
-        echo "make"
-        cd "../" || exit
-
-        mkdir -p "$MODEL_ZOO_PATH/safety_helmet_vest_detection"
-        cp -R "./app/." "$MODEL_ZOO_PATH/safety_helmet_vest_detection"
+        cd "./${app_name}/app" || exit
+        build_and_install_demos "${app_name}" "app"
     )
 }
 
