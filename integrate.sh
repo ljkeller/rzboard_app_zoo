@@ -15,7 +15,7 @@ function age_gender_detection {
         cd "../" || exit
 
         mkdir -p "$DEMO_DIR/foo"
-        cp -r "./app/*" "$DEMO_DIR/foo"
+        cp -R "./app/." "$DEMO_DIR/foo"
     )
     # Add commands specific to age_gender_detection
 }
