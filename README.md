@@ -18,6 +18,15 @@ This Library has API functions for leveraging AI applications that will run on A
 12. Hand Gesture Recognition V2
 13. Car Ahead Departure Detection
 
+
+> [!NOTE]
+> This repository uses [git-lfs](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage) to expedite the dev/test iteration cycle. If you're building from source, you'll need it.
+> 
+>See: [Collaboration with Git Large File Storage](https://docs.github.com/en/repositories/working-with-files/managing-large-files/collaboration-with-git-large-file-storage)
+
+> [!TIP]
+> Runtime failures due to missing .dat files? Assuming you have git lfs, you must have installed git lfs after cloning. `git lfs fetch` should resolve your issue
+
 ### Library Goals
 
 The primary goal of this repository is to integrate the Renesas RZV2L model zoo with RZBoard. This includes integrating the demos with RZBoard's demo launcher.
