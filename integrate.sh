@@ -1,9 +1,11 @@
-#!/bin/bash
+#!/bin/bash -e
 
 echo "Usage (inside rzboard_app_zoo dir): ./integrate.sh"
 
-model_zoo_path="/home/root/model_zoo"
-http_demo_path="/home/root/demos"
+# placeholder dirs because this is an intermediary step
+# final step is to scp to edge
+model_zoo_path="/tmp/home/root/model_zoo"
+http_demo_path="/tmp/home/root/demos"
 
 # Assumes that the passed directory is the c++ app directory, and you can
 # simply step pack one directory to see the c++ app and webapp directories
@@ -120,6 +122,7 @@ function integrate_applications {
     safety_helmet_vest_detection
 
     echo "Integration complete."
+    echo "Temporary files are located at ${model_zoo_path} and ${http_demo_path}"
 }
 
 integrate_applications
