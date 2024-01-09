@@ -24,8 +24,8 @@ This Library has API functions for leveraging AI applications that will run on A
 > 
 >See: [Collaboration with Git Large File Storage](https://docs.github.com/en/repositories/working-with-files/managing-large-files/collaboration-with-git-large-file-storage)
 
-> [!TIP]
-> Runtime failures due to missing .dat files? Assuming you have git lfs, you must have installed git lfs after cloning. `git lfs fetch` should resolve your issue
+> [!WARNING]
+> [ERROR] Failed to open: /_weight.dat error=2. [ERROR] Failed to load data from memory: /_weight.dat Failed to load DRP-AI object files - This error suggests that the model weight file is not available in the exe folder. Assuming you have git lfs, `git lfs fetch` should resolve your issue
 
 ### Library Goals
 
