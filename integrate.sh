@@ -44,15 +44,6 @@ function animal_detection {
 
         cd "./${app_name}/usbcam_app" || exit
         build_and_install_demos "${app_name}" "usbcam_app"
-
-        local weights_url="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/releases/download/v1.2.3/animal_yolov3_weight.dat"
-        local weights_destination="${model_zoo_path}/${app_name}/exe/animal_yolov3/"
-        echo "Attemping to pull weights from ${weights_url}"
-        if [ ! -d "${weights_destination}" ]; then
-            echo "Directory ${weights_destination} should exist from build_and_install_demos"
-            exit 1
-        fi
-        wget "${weights_url}" -P "${weights_destination}"
     )
 }
 
@@ -93,15 +84,6 @@ function head_counting {
 
         cd "./${app_name}/app" || exit
         build_and_install_demos "${app_name}" "app"
-
-        local weights_url="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/releases/download/v1.2.2/yolov3_Head_counting_weights.dat"
-        local weights_destination="${model_zoo_path}/${app_name}/exe/yolov3_cam/"
-        echo "Attemping to pull weights from ${weights_url}"
-        if [ ! -d "${weights_destination}" ]; then
-            echo "Directory ${weights_destination} should exist from build_and_install_demos"
-            exit 1
-        fi
-        wget "${weights_url}" -P "${weights_destination}"
     )
 }
 
@@ -122,15 +104,6 @@ function safety_helmet_vest_detection {
 
         cd "./${app_name}/app" || exit
         build_and_install_demos "${app_name}" "app"
-
-        local weights_url="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/releases/download/v1.2.2/yolov3_Helmet_vest_detection_weight.dat"
-        local weights_destination="${model_zoo_path}/${app_name}/exe/yolov3_Helmet_vest_detection"
-        echo "Attemping to pull weights from ${weights_url}"
-        if [ ! -d "${weights_destination}" ]; then
-            echo "Directory ${weights_destination} should exist from build_and_install_demos"
-            exit 1
-        fi
-        wget "${weights_url}" -P "${weights_destination}"
     )
 }
 
