@@ -92,12 +92,12 @@ const static double anchors[] =
 #define NUM_GRID_3 52
 
 /*CAMERA & ISP Settings Related*/
-#define MIPI_WIDTH                (1280)
-#define MIPI_HEIGHT               (960)
+#define MIPI_WIDTH                (960)
+#define MIPI_HEIGHT               (540)
 #define MIPI_BUFFER               (8)
 #define IMAGE_NUM                 (1)
-#define IMREAD_IMAGE_WIDTH        (1280)
-#define IMREAD_IMAGE_HEIGHT       (960)
+#define IMREAD_IMAGE_WIDTH        (640)
+#define IMREAD_IMAGE_HEIGHT       (480)
 #define IMREAD_IMAGE_CHANNEL      (2)
 #define IMREAD_IMAGE_SIZE         (IMREAD_IMAGE_WIDTH*IMREAD_IMAGE_HEIGHT*IMREAD_IMAGE_CHANNEL)
 
@@ -150,8 +150,8 @@ const static double anchors[] =
 #define INF_FRAME_NUM               (3)
 
 /*Camera:: Capture Image Information*/
-#define CAM_IMAGE_WIDTH             (1280)
-#define CAM_IMAGE_HEIGHT            (960)
+#define CAM_IMAGE_WIDTH             (640)
+#define CAM_IMAGE_HEIGHT            (480)
 #define CAM_IMAGE_CHANNEL_YUY2      (2)
 
 /*Camera:: Capture Information */
@@ -163,13 +163,13 @@ const static double anchors[] =
 #endif /* INPUT_CORAL */
 
 /*DRP-AI Input image information*/
-#define DRPAI_IN_WIDTH              (1280)
-#define DRPAI_IN_HEIGHT             (960)
+#define DRPAI_IN_WIDTH              (CAM_IMAGE_WIDTH)
+#define DRPAI_IN_HEIGHT             (CAM_IMAGE_HEIGHT)
 #define DRPAI_IN_CHANNEL_YUY2       (CAM_IMAGE_CHANNEL_YUY2)
 
 /*Wayland:: Wayland Information */
-#define IMAGE_OUTPUT_WIDTH          (1280)
-#define IMAGE_OUTPUT_HEIGHT         (960)
+#define IMAGE_OUTPUT_WIDTH          (640)
+#define IMAGE_OUTPUT_HEIGHT         (480)
 #define IMAGE_CHANNEL_BGRA          (4)
 #define WL_BUF_NUM                  (2)
 
