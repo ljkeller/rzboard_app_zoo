@@ -947,6 +947,7 @@ void *R_Inf_Thread(void *threadid)
                 goto ai_inf_end;
             }
             /*Checks if image frame from Capture Thread is ready.*/
+            // printf("Waiting for Capture Thread to start inf\n");
             if (inference_start.load())
             {
                 break;
@@ -1293,8 +1294,11 @@ void *R_Capture_Thread(void *threadid)
             goto capture_end;
         }
 
+        printf("Capture Thread about to capture image \n");
+
         /* Capture MIPI camera image and stop updating the capture buffer */
         capture_addr = (uint32_t)capture->capture_image(udmabuf_address);
+        printf("Capture Thread captured image \n");
         if (capture_addr == 0)
         {
             fprintf(stderr, "[ERROR] Failed to capture image from camera.\n");
@@ -1381,6 +1385,7 @@ void *R_Display_Thread(void *threadid)
             goto hdmi_end;
         }
         /* Check img_obj_ready flag which is set in Capture Thread. */
+        // printf("Display Thread about to display image. (Waiting for img obj) \n");
         if (img_obj_ready.load())
         {
             /* Convert YUYV image to BGRA format. */

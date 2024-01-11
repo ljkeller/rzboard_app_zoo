@@ -31,6 +31,7 @@ Camera::Camera()
 {
     camera_width    = CAM_IMAGE_WIDTH;
     camera_height   = CAM_IMAGE_HEIGHT;
+    // TODO! macro def seems to be wrong
     camera_color    = CAM_IMAGE_CHANNEL_YUY2;
 }
 
@@ -57,9 +58,9 @@ int8_t Camera::start_camera()
     const char* commands[4] =
     {
         "media-ctl -d /dev/media0 -r",
-        "media-ctl -d /dev/media0 -V \"\'ov5640 0-003c\':0 [fmt:UYVY8_2X8/1280x960 field:none]\"",
+        "media-ctl -d /dev/media0 -V \"\'ov5640 0-003c\':0 [fmt:UYVY8_2X8/1280x720 field:none]\"",
         "media-ctl -d /dev/media0 -l \"\'rzg2l_csi2 10830400.csi2\':1 -> \'CRU output\':0 [1]\"",
-        "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/1280x960 field:none]\""
+        "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/1280x720 field:none]\""
     };
 
     /* media-ctl command */
@@ -124,6 +125,7 @@ int8_t Camera::start_camera()
         /* buffer[n] must be casted to unsigned long type in order to assign it to V4L2 buffer */
         buf_capture.m.userptr =reinterpret_cast<unsigned long>(buffer[n]);
         buf_capture.length = imageLength;
+        printf("buf capture length = %d\n", buf_capture.length);
         ret = xioctl(m_fd, VIDIOC_QBUF, &buf_capture);
         if (-1 == ret)
         {
@@ -235,6 +237,7 @@ int8_t Camera::capture_qbuf()
 ******************************************/
 uint64_t Camera::capture_image(uint64_t udmabuf_address)
 {
+    printf("capture_image start\n");
     int8_t ret = 0;
     fd_set fds;
     /*Delete all file descriptor from fds*/
@@ -242,25 +245,40 @@ uint64_t Camera::capture_image(uint64_t udmabuf_address)
     /*Add m_fd to file descriptor set fds*/
     FD_SET(m_fd, &fds);
 
+    struct timeval tv;
+
     /* Check when a new frame is available */
     while (1)
     {
-        ret = select(m_fd + 1, &fds, NULL, NULL, NULL);
+        tv.tv_sec = 3;
+        tv.tv_usec = 0;
+        printf("About to select\n");
+        ret = select(m_fd + 1, &fds, NULL, NULL, &tv);
+        printf("Select!\n");
         if (0 > ret)
         {
+            printf("select error\n");
             if (EINTR == errno) continue;
             return 0;
         }
+        else if (0 == ret)
+        {
+            printf("select timeout\n");
+            continue;
+        }
+
         break;
     }
+    printf("broke out of new frame thread\n");
 
     /* Get buffer where camera stored data */
     ret = xioctl(m_fd, VIDIOC_DQBUF, &buf_capture);
     if (-1 == ret)
     {
+        printf("VIDIOC_DQBUF error\n");
         return 0;
     }
-
+    printf("VIDIOC_DQBUF success\n");
     return udmabuf_address + buf_capture.index * imageLength;
 }
 
@@ -360,6 +378,10 @@ int8_t Camera::init_camera_fmt()
     fmt.type=V4L2_BUF_TYPE_VIDEO_CAPTURE;
     fmt.fmt.pix.width = camera_width;
     fmt.fmt.pix.height = camera_height;
+    printf("camera_width = %d\n", camera_width);
+    printf("camera_height = %d\n", camera_height);
+    // why is this YUYV?
+    // media-ctl says UYVY
     fmt.fmt.pix.pixelformat = V4L2_PIX_FMT_YUYV;
     fmt.fmt.pix.field = V4L2_FIELD_NONE;
 

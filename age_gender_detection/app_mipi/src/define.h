@@ -92,19 +92,14 @@ const static double anchors[] =
 #define NUM_GRID_3 52
 
 /*CAMERA & ISP Settings Related*/
-#define MIPI_WIDTH                (960)
-#define MIPI_HEIGHT               (540)
 #define MIPI_BUFFER               (8)
 #define IMAGE_NUM                 (1)
-#define IMREAD_IMAGE_WIDTH        (640)
-#define IMREAD_IMAGE_HEIGHT       (480)
+#define IMREAD_IMAGE_WIDTH        (1280)
+#define IMREAD_IMAGE_HEIGHT       (960)
 #define IMREAD_IMAGE_CHANNEL      (2)
 #define IMREAD_IMAGE_SIZE         (IMREAD_IMAGE_WIDTH*IMREAD_IMAGE_HEIGHT*IMREAD_IMAGE_CHANNEL)
 
 /* Size of input image to the model */
-#define DISPLAY_WIDTH             (MIPI_WIDTH)
-#define DISPLAY_HEIGHT            (MIPI_HEIGHT)
-#define DISPLAY_TEXT_SIZE         (256)
 #define INF_OUT_SIZE_YOLO         (0x373c8c)
 
 /*Age_gender Post Processing & Drawing Related*/
@@ -150,13 +145,15 @@ const static double anchors[] =
 #define INF_FRAME_NUM               (3)
 
 /*Camera:: Capture Image Information*/
-#define CAM_IMAGE_WIDTH             (640)
-#define CAM_IMAGE_HEIGHT            (480)
+// used to configure camera in init_camera_fmt
+#define CAM_IMAGE_WIDTH             (1280)
+#define CAM_IMAGE_HEIGHT            (960)
+// TODO! fmt wrong?
 #define CAM_IMAGE_CHANNEL_YUY2      (2)
 
 /*Camera:: Capture Information */
 #ifdef INPUT_CORAL
-// #define CAP_BUF_NUM                 (6)
+// orignally 6, testing variations
 #define CAP_BUF_NUM                 (3)
 #else /* INPUT_CORAL */
 #define CAP_BUF_NUM                 (3)
@@ -168,8 +165,8 @@ const static double anchors[] =
 #define DRPAI_IN_CHANNEL_YUY2       (CAM_IMAGE_CHANNEL_YUY2)
 
 /*Wayland:: Wayland Information */
-#define IMAGE_OUTPUT_WIDTH          (640)
-#define IMAGE_OUTPUT_HEIGHT         (480)
+#define IMAGE_OUTPUT_WIDTH          (1280)
+#define IMAGE_OUTPUT_HEIGHT         (960)
 #define IMAGE_CHANNEL_BGRA          (4)
 #define WL_BUF_NUM                  (2)
 
