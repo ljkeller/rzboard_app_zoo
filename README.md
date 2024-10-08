@@ -1,6 +1,12 @@
 # RZBoard Model Zoo
 https://github.com/ljkeller/rzboard_app_zoo/assets/44109284/52b23467-6a2a-47ec-9dff-7fd6632e0693
 
+## Getting Started
+
+Use git to pull the samples down unto your board. Make sure you have git-lfs enablement to pull down models too.
+
+If you want to make customizations, leverage the `integrate.sh` script from inside of your Renesas AI SDK, or build the samples directly on the board (slower).
+
 ## Overview
 
 This Library has API functions for leveraging AI applications that will run on Avnet RZBoard V2L. Currently this library has following sample applications: 
